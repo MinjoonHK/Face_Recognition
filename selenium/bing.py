@@ -18,7 +18,11 @@ elem = browser.find_element("name","q")
 elem.send_keys("Hong Kong PolyU")
 # Enter
 elem.send_keys(Keys.RETURN)
-browser.find_elements(By.CSS_SELECTOR, ".rg_i.Q4LuWd")[0].click()
-time.sleep(3)
-imgURL = browser.find_element(By.CSS_SELECTOR, ".n3VNCb").get_attribute("src")
-urllib.request.urlretrieve(imgURL, "test.jpg")
+images = browser.find_elements(By.CSS_SELECTOR, ".rg_i.Q4LuWd")
+count = 1
+for image in images:
+    image.click()
+    time.sleep(3)
+    imgURL = browser.find_element(By.CSS_SELECTOR, ".n3VNCb").get_attribute("src")
+    urllib.request.urlretrieve(imgURL, str(count) + ".jpg")
+    count = count + 1
